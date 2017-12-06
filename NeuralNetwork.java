@@ -57,7 +57,8 @@ public class NeuralNetwork {
 
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
-        demo.setVisible(true);
+        //demo.setVisible(true); 
+		//run  else 
 	}
 	/**김종건
 	 * 46줄(main)에서 실행
