@@ -14,7 +14,6 @@ public class NeuralNetwork {
 	static {
 		Locale.setDefault(Locale.ENGLISH);
 	}
-	final boolean isTrained = false;
 	final DecimalFormat df;
 	final Random rand = new Random();
 	final ArrayList<Neuron> inputLayer = new ArrayList<Neuron>();
