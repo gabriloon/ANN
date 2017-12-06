@@ -1,5 +1,5 @@
 package neural;
-/** 김종건
+/** 
  * 패키지의 몸체 
  * main 함수존재
  * XOR example
@@ -29,7 +29,7 @@ public class NeuralNetwork {
 
 	final double learningRate = 0.9f;
 	final double momentum = 0.7f;
-	/**김종건
+	/**
 	 * XOR에 대한 인풋과 기대값을 설정해놓는다
 	 * 그래서
 	 */
