@@ -40,14 +40,11 @@ package neural;
  *
  */
 
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
+
+import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -62,16 +59,12 @@ import org.jfree.ui.RefineryUtilities;
  * A simple demo showing a dataset created using the {@link XYSeriesCollection} class.
  *
  */
-public class XYSeriesDemo extends ApplicationFrame {
-
-   public static BufferedReader in;   // 채팅할때 쓰는 
-
-   public static Socket dataSocket= null ;
-    /**
-     * A demonstration application showing an XY series containing a null value.
-     *
-     * @param title  the frame title.
-     */
+public class XYSeriesDemo extends ApplicationFrame { 
+	/**
+	 * A demonstration application showing an XY series containing a null value.
+	 *
+	 * @param title  the frame title.
+	 */
 	public XYSeries series = new XYSeries("Input1 to Hidden1");
 	public XYSeries series2 = new XYSeries("Input1 to Hidden2");
 	public XYSeries series3 = new XYSeries("Input1 to Hidden3");
@@ -84,55 +77,35 @@ public class XYSeriesDemo extends ApplicationFrame {
 	public XYSeries series10 = new XYSeries("Hidden2 to Output");
 	public XYSeries series11 = new XYSeries("Hidden3 to Output");
 	public XYSeries series12 = new XYSeries("Hidden4 to Output");
-    public XYSeriesDemo(final String title) {
+	public XYSeriesDemo(final String title) {
 
-        super(title); 
-        final XYSeriesCollection data = new XYSeriesCollection();
-        data.addSeries(series);
-        data.addSeries(series2);
-        data.addSeries(series3);
-    	data.addSeries(series4);
-    	data.addSeries(series5);
-    	data.addSeries(series6);
-    	data.addSeries(series7);
-    	data.addSeries(series8);
-    	data.addSeries(series9);
-    	data.addSeries(series10);
-    	data.addSeries(series11);
-    	data.addSeries(series12);
-        final JFreeChart chart = ChartFactory.createXYLineChart(
-            "Film Box neural",
-            "Number of Trainng", 
-            "WEIGHT", 
-            data,
-            PlotOrientation.VERTICAL,
-            true,
-            true,
-            false
-        );
+		super(title); 
+		final XYSeriesCollection data = new XYSeriesCollection();
+		data.addSeries(series);
+		data.addSeries(series2);
+		data.addSeries(series3);
+		data.addSeries(series4);
+		data.addSeries(series5);
+		data.addSeries(series6);
+		data.addSeries(series7);
+		data.addSeries(series8);
+		data.addSeries(series9);
+		data.addSeries(series10);
+		data.addSeries(series11);
+		data.addSeries(series12);
+		final JFreeChart chart = ChartFactory.createXYLineChart(
+				"Film Box neural",
+				"Number of Trainng", 
+				"WEIGHT", 
+				data,
+				PlotOrientation.VERTICAL,
+				true,
+				true,
+				false
+				);
 
-        final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        setContentPane(chartPanel);        
-    }
-    public void run() throws IOException {
-    	
-    }
-    // ****************************************************************************
-    // * JFREECHART DEVELOPER GUIDE                                               *
-    // * The JFreeChart Developer Guide, written by David Gilbert, is available   *
-    // * to purchase from Object Refinery Limited:                                *
-    // *                                                                          *
-    // * http://www.object-refinery.com/jfreechart/guide.html                     *
-    // *                                                                          *
-    // * Sales are used to provide funding for the JFreeChart project - please    * 
-    // * support us so that we can continue developing free software.             *
-    // ****************************************************************************
-    
-    /**
-     * Starting point for the demonstration application.
-     *
-     * @param args  ignored.
-     * @throws IOException 
-     */
+		final ChartPanel chartPanel = new ChartPanel(chart);
+		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+		setContentPane(chartPanel);        
+	}
 }
