@@ -48,19 +48,19 @@ public class NeuralNetwork {
 	// for weight update all
 	final HashMap<String, Double> weightUpdate = new HashMap<String, Double>();
 	//메인함수
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		NeuralNetwork nn = new NeuralNetwork(2, 4, 1);
 		int maxRuns = 500000;
 		double minErrorCondition = 0.01;
-		nn.run(maxRuns, minErrorCondition);
+
 
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
-        //demo.setVisible(true); 
+        demo.setVisible(true); 
+		nn.run(maxRuns, minErrorCondition);
 		//run  else 
 	}
 	/**
-	 * 46줄(main)에서 실행
 	 * 
 	 * @param input
 	 * @param hidden
@@ -125,11 +125,6 @@ public class NeuralNetwork {
 	// random
 	double getRandom() {
 		double 	re=randomWeightMultiplier * (rand.nextDouble() * 2 - 1)/2;
-/*
-		if(re>1&&re<-1) {
-			re=randomWeightMultiplier * (rand.nextDouble() * 2 - 1);
-		}
-*/
 		return re;
 	}
 
@@ -228,7 +223,7 @@ public class NeuralNetwork {
 		}
 	}
 
-	void run(int maxSteps, double minError) {
+	void run(int maxSteps, double minError) throws InterruptedException {
 		int i;
 		// Train neural network until minError reached or maxSteps exceeded
 		double error = 1;
@@ -250,6 +245,7 @@ public class NeuralNetwork {
 
 				applyBackpropagation(expectedOutputs[p]);	//역전판 알고리즘 기대값 0110이랑 보냠
 			}//인풀 노드마다
+	        Thread.sleep(151);
 			graphInWeights(i);
 		}
 
@@ -318,7 +314,7 @@ public class NeuralNetwork {
 		public void graphInWeights(int cnt) {
 		int i=0;
 		// weights for the hidden layer
-		for (Neuron n : hiddenLayer1) {
+		for (Neuron n : hiddenLayer) {
 			ArrayList<Connection> connections = n.getAllInConnections();
 			for (Connection con : connections) {
 				double w = con.getWeight();
