@@ -1,0 +1,121 @@
+
+
+
+
+
+
+import java.util.*;
+
+public class Neuron {	
+	static int counter = 0; //starts at 0
+	final public int id;  // auto increment 
+	Connection biasConnection;// To Connected the bias to the Neuron. 
+	final double bias = -1; //  Bias's value initial -1 about each Neuron.
+	double output; //Calculation results of Neuron. 
+	
+	ArrayList<Connection> Inconnections = new ArrayList<Connection>();//Connections to multiple lists.
+	HashMap<Integer,Connection> connectionLookup = new HashMap<Integer,Connection>(); //Connection ?????
+	
+	public Neuron(){//Neuron Constructor
+		id = counter;//Allocate Neuron's ID according to the counter
+		counter++;  //auto increment.
+	}
+	
+	/**
+	 * Compute Sj = Wij*Aij + w0j*bias
+	 */
+	public void calculateOutput(){
+		double s = 0;       
+		for(Connection con : Inconnections){  //Through a list of connection
+			Neuron leftNeuron = con.getFromNeuron(); //read Connection 's Value for neuron  
+			double weight = con.getWeight();//read Connection's Value for Weight  
+			double a = leftNeuron.getOutput(); //Get the output from previous layer
+			
+			
+			s = s + (weight*a);//That changes the Value.
+		}
+		s = s + (biasConnection.getWeight()*bias);//Apply the bias values in the layer
+		
+		output = g(s);//Return the result to Sigmoid function.
+	}
+	
+	double g(double x) {//Return Sigmoid function's Result
+		return sigmoid(x);
+	} 
+
+	double sigmoid(double x) {//Sigmoid Function's Calculation
+		return 1.0 / (1.0 +  (Math.exp(-x)));
+	}
+	
+	public void addInConnectionsS(ArrayList<Neuron> inNeurons){//function that adds connection according to the neuron
+		for(Neuron n: inNeurons){
+			Connection con = new Connection(n,this);//New Connection
+			Inconnections.add(con);//Add Connection in the Connection List
+			connectionLookup.put(n.id, con);//Write id and Connection about ??
+		}
+	}
+	
+	public Connection getConnection(int neuronIndex){
+		return connectionLookup.get(neuronIndex);
+	}
+
+	public void addInConnection(Connection con){//Add new connection to the list
+		Inconnections.add(con);
+	}
+	public void addBiasConnection(Neuron n){//Create Bias according to the connection.
+		Connection con = new Connection(n,this);
+		biasConnection = con;
+		Inconnections.add(con);//Add new Bias connection to the list
+	}
+	public ArrayList<Connection> getAllInConnections(){ //Return the connection list.
+		return Inconnections;
+	}
+	
+	public double getBias() { //Return Neuron's Bias 
+		return bias;
+	}
+	public double getOutput() {//Return calculation results of neuron
+		return output;
+	}
+	public void setOutput(double o){ //Allocate the Result of Neuron
+		output = o;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
