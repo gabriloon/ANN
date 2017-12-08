@@ -59,7 +59,7 @@ public class NeuralNetwork {
         //demo.setVisible(true); 
 		//run  else 
 	}
-	/**김종건
+	/**
 	 * 46줄(main)에서 실행
 	 * 
 	 * @param input
@@ -250,7 +250,7 @@ public class NeuralNetwork {
 
 				applyBackpropagation(expectedOutputs[p]);	//역전판 알고리즘 기대값 0110이랑 보냠
 			}//인풀 노드마다
-			showWeights(i);
+			graphInWeights(i);
 		}
 
 		printResult();
@@ -315,11 +315,10 @@ public class NeuralNetwork {
 		}
 	}
 
-	// trained data
-	public void showWeights(int cnt) {
+		public void graphInWeights(int cnt) {
 		int i=0;
 		// weights for the hidden layer
-		for (Neuron n : hiddenLayer) {
+		for (Neuron n : hiddenLayer1) {
 			ArrayList<Connection> connections = n.getAllInConnections();
 			for (Connection con : connections) {
 				double w = con.getWeight();
@@ -327,18 +326,18 @@ public class NeuralNetwork {
 				if(i==0)
 					demo.series.add(cnt, w);
 				else if(i==1)
-					demo.series2.add(cnt, w);
-				else if(i==2)
-					demo.series3.add(cnt, w);
-				else if(i==3)
-					demo.series4.add(cnt, w);
-				else if(i==4)
 					demo.series5.add(cnt, w);
-				else if(i==5)
+				else if(i==3)
+					demo.series2.add(cnt, w);
+				else if(i==4)
 					demo.series6.add(cnt, w);
 				else if(i==6)
-					demo.series7.add(cnt, w);
+					demo.series3.add(cnt, w);
 				else if(i==7)
+					demo.series7.add(cnt, w);
+				else if(i==9)
+					demo.series4.add(cnt, w);
+				else if(i==10)
 					demo.series8.add(cnt, w);
 				i++;
 			}
